@@ -1,8 +1,5 @@
 #**Traffic Sign Recognition** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -34,9 +31,10 @@ The goals / steps of this project are the following:
 ---
 ###Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
 
-You're reading it! and here is a link to my [project code](https://github.com/hsuvarna/TrafficSigns/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/hsuvarna/TrafficSigns/blob/master/Traffic_Sign_Classifier.ipynb)
+
 
 ###Data Set Summary & Exploration
 
@@ -57,6 +55,19 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 ![alt text][image1]
 
+The things about the data visualization that stuck my mind are 
+* how many different shapes are there in the problem
+* how many colors are there in input
+* is text present in input data
+* are deformed (equivalent of italics, bold in text) objects present
+* which objects are close
+* which objects are 180 degrees i.e. opposite i.e. reflective
+* which objects are magnified version of other objects
+
+More about the content so that convolution windows can be guessed. But ran out of time/coding knowledge to depict.
+
+
+
 ###Design and Test a Model Architecture
 
 ####1. Describe how you preprocessed the image data. 
@@ -66,7 +77,6 @@ I have tried the following first to process images
 2. I also tried RGB normalization by computing (R/R+G+B)\*255 method. It was very slow as I was operating at pixel level.
 3. Then I tried the simple linear alzebra way of dividing by 255 and subtracting 0.5 to clamp values [-0.5 to 0.5]. This was fast and worked.
 
-![alt text][image2]
 
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
