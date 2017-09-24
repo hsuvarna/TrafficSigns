@@ -94,27 +94,49 @@ My final model consisted of the following layers:
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an the above LENET neural net of 5 levels. The batch size was 100, epochs 10 and learning rate of 0.001. All the labels were one hot encoded. 
+To train the model, I used an the above LENET neural net of 5 levels. The batch size was 100, epochs 10 and learning rate of 0.001. All the labels were one hot encoded. The convergence to minimum error was attained using the AdamOptimizer function. I n the class we only learned about Gradientdescent optimizer. The optimizer per stack echange link https://stats.stackexchange.com/questions/184448/difference-between-gradientdescentoptimizer-and-adamoptimizer-tensorflow is faster at the expense of more computation and memory.
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+After the preprocessing gave me fits of accuracies around < 10%, I fixed the preprocessing to normalization to [-0.5, 0.5] for all channels of the image. This immediately bumped up my accuracies into high 70s. Then I played with the epochs, learning rate and batch size.
+| Epochs         		|    Btach size	        					| Learning rate      | Accuracies
+|:---------------------:|:---------------------------------------------:| 
+| 50         		| 100   							| 0.0001     | Validation = 0.84, Test=0.25 
+| 50         		| 100   							| 0.01     | Validation = 0.9, Test=0.88
+| 10         		| 50  							| 0.00001     | Validation = 0.11, Test=0.0.07
+| 10         		| 150   							| 0.0001     | Validation = 0.74, Test=0.73
+| 10         		| 100   							| 0.01     | Validation = 0.90, Test=0.889
+| 10         		| 150   							| 0.0001     | Validation = 0.74, Test=0.73
+| 10         		| 100   							| 0.01     | Validation = 0.90, Test=0.89
+| 10         		| 100   							| 0.01     | Validation = 0.902, Test=0.889
+| 20         		| 100   							| 0.01     | Validation = 0.93, Test=0.91
+
+
+I settled for the last row.
+
+####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
+I just experimented with various epochs, learning rates and batch sizes. 
+The current neural net model seems like working good. Basically the input problem we have is characterized by pretty naroow set of image content. i.e. all the german traffic signs are about traingles (blue and red), circles (blue and red), arrows and curves. The neural net convolutions in the 1st two layers are enough to learn about these basic shapes. This problem is slightle extended version of the mnist digits where in only 10 digits are there and all are pretty well defined through curves.
+However, this may not be enough for objects recognistion, patterns.
+
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 0.917
+* validation set accuracy of 0.918
+* test set accuracy of ? 0.90
 
 If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+No. I started with LENET and it worked ok.
 
 If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
+* What architecture was chosen?  
+
+LENET
+
+* Why did you believe it would be relevant to the traffic sign application? 
+
+Based on the good results it gave for mnist. The traffic isgns are also limited shapes like mnist digits.
+
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+If the test images are much like training images i.e. cropped to the center, then the test results were good. So if we keep same model of preprocessing, cropping, shape of training/test images, we can get good results.
 
 ###Test a Model on New Images
 
@@ -134,13 +156,18 @@ Here are the results of the prediction:
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| wild animal sign     			| wild animals sign 										|
+| slippery road					| double curve										|
+| curve left	      		| curve left				 				|
+| curve right			| curve right     							|
+| no curve ahead			| no curve ahead    							|
+| bike crossing		|     bike crossing							|
+| road narrows		| road narrows      							|
+| road works			| road works     							|
+| bumpy road			| bumpy road     							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 9 of the 10 traffic signs, which gives an accuracy of 90%. This compares favorably to the accuracy on the test set.
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -148,16 +175,47 @@ The code for making predictions on my final model is located in the 11th cell of
 
 For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
 
+examples/curve_left.jpg
+examples/curve_right.jpg
+examples/road_narrows.jpg
+examples/ice.jpg
+examples/bumpy.jpg
+examples/roadworks.jpg
+examples/wild.jpg
+examples/noveh.jpg
+examples/bike.jpg
+examples/stop.jpg
+image shape is (32, 32, 3)
+length 10
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
+| 1.0         			| curve_left 									| 
 
 For the second image ... 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 0.999         			| curve_right 									| 
+| 0.000949         			| slippery									| 
+
+For the third image ... 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.000         			| curve_right 									| 
+| 0.0         			| slippery									| 
+
+For the fourth image ... 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.000         			| children crossing (wrong)									| 
+| 0.0         			| slippery									| 
+
+For the fifth image ... 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.000         			| bumpy									| 
+| 0.0         			| pedestrians						| 
+
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
