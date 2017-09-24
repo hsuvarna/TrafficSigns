@@ -11877,6 +11877,7 @@ div#notebook {
 <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of training examples =&quot;</span><span class="p">,</span> <span class="n">n_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of validating examples =&quot;</span><span class="p">,</span> <span class="n">n_validation</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of testing examples =&quot;</span><span class="p">,</span> <span class="n">n_test</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Image data shape =&quot;</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of classes =&quot;</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
@@ -11897,6 +11898,7 @@ div#notebook {
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Number of training examples = 34799
+Number of validating examples = 4410
 Number of testing examples = 12630
 Image data shape = (32, 32, 3)
 Number of classes = 43
@@ -12108,7 +12110,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
@@ -12171,6 +12173,71 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[[-0.28039216 -0.27254902 -0.28823529]
+  [-0.26078431 -0.26078431 -0.27647059]
+  [-0.25686275 -0.26078431 -0.27647059]
+  ..., 
+  [-0.33137255 -0.31960784 -0.31960784]
+  [-0.33137255 -0.31960784 -0.31960784]
+  [-0.32352941 -0.31568627 -0.31568627]]
+
+ [[-0.26078431 -0.25294118 -0.26470588]
+  [-0.27254902 -0.26862745 -0.27647059]
+  [-0.27254902 -0.26862745 -0.28431373]
+  ..., 
+  [-0.32745098 -0.31568627 -0.31568627]
+  [-0.32745098 -0.31960784 -0.31960784]
+  [-0.31960784 -0.31176471 -0.31568627]]
+
+ [[-0.26862745 -0.26078431 -0.26470588]
+  [-0.28431373 -0.28039216 -0.28039216]
+  [-0.28039216 -0.27254902 -0.28039216]
+  ..., 
+  [-0.31568627 -0.30784314 -0.32352941]
+  [-0.31568627 -0.3        -0.30784314]
+  [-0.30784314 -0.3        -0.30392157]]
+
+ ..., 
+ [[-0.26078431 -0.24901961 -0.27647059]
+  [-0.25686275 -0.24901961 -0.27647059]
+  [-0.24901961 -0.2372549  -0.26078431]
+  ..., 
+  [-0.29607843 -0.28823529 -0.31176471]
+  [-0.28823529 -0.28823529 -0.31176471]
+  [-0.28431373 -0.28431373 -0.30784314]]
+
+ [[-0.26470588 -0.25294118 -0.28039216]
+  [-0.26862745 -0.25686275 -0.28039216]
+  [-0.26078431 -0.24901961 -0.26862745]
+  ..., 
+  [-0.29607843 -0.28823529 -0.31568627]
+  [-0.29215686 -0.28431373 -0.31176471]
+  [-0.29215686 -0.28823529 -0.31176471]]
+
+ [[-0.27647059 -0.26470588 -0.29215686]
+  [-0.27647059 -0.26470588 -0.28823529]
+  [-0.26862745 -0.25686275 -0.27647059]
+  ..., 
+  [-0.27647059 -0.26862745 -0.30392157]
+  [-0.26470588 -0.26078431 -0.28823529]
+  [-0.27254902 -0.26862745 -0.29607843]]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12189,7 +12256,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 <span class="c1">### Feel free to use as many code cells as needed.</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 
-<span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">rate</span> <span class="o">=</span> <span class="mf">0.001</span>
 </pre></div>
@@ -12251,7 +12318,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
     <span class="c1"># TODO: Activation.</span>
     <span class="n">fc2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">fc2</span><span class="p">)</span>
     
-    <span class="c1"># TODO: Layer 5: Fully Connected. Input = 84. Output = 10.</span>
+    <span class="c1"># TODO: Layer 5: Fully Connected. Input = 84. Output = 43.</span>
     <span class="n">fc3_W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">43</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">))</span>
     <span class="n">fc3_b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">43</span><span class="p">))</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc2</span><span class="p">,</span> <span class="n">fc3_W</span><span class="p">)</span> <span class="o">+</span> <span class="n">fc3_b</span>
@@ -12373,34 +12440,64 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 <pre>Training...
 
 EPOCH 1 ...
-Validation Accuracy = 0.763
+Validation Accuracy = 0.766
 
 EPOCH 2 ...
-Validation Accuracy = 0.842
+Validation Accuracy = 0.850
 
 EPOCH 3 ...
-Validation Accuracy = 0.860
+Validation Accuracy = 0.884
 
 EPOCH 4 ...
-Validation Accuracy = 0.900
+Validation Accuracy = 0.880
 
 EPOCH 5 ...
-Validation Accuracy = 0.894
-
-EPOCH 6 ...
-Validation Accuracy = 0.898
-
-EPOCH 7 ...
-Validation Accuracy = 0.885
-
-EPOCH 8 ...
 Validation Accuracy = 0.895
 
+EPOCH 6 ...
+Validation Accuracy = 0.883
+
+EPOCH 7 ...
+Validation Accuracy = 0.888
+
+EPOCH 8 ...
+Validation Accuracy = 0.901
+
 EPOCH 9 ...
-Validation Accuracy = 0.900
+Validation Accuracy = 0.902
 
 EPOCH 10 ...
-Validation Accuracy = 0.894
+Validation Accuracy = 0.909
+
+EPOCH 11 ...
+Validation Accuracy = 0.898
+
+EPOCH 12 ...
+Validation Accuracy = 0.914
+
+EPOCH 13 ...
+Validation Accuracy = 0.908
+
+EPOCH 14 ...
+Validation Accuracy = 0.911
+
+EPOCH 15 ...
+Validation Accuracy = 0.898
+
+EPOCH 16 ...
+Validation Accuracy = 0.913
+
+EPOCH 17 ...
+Validation Accuracy = 0.920
+
+EPOCH 18 ...
+Validation Accuracy = 0.895
+
+EPOCH 19 ...
+Validation Accuracy = 0.903
+
+EPOCH 20 ...
+Validation Accuracy = 0.917
 
 Model saved
 </pre>
@@ -12449,14 +12546,16 @@ Model saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">images</span> <span class="o">=</span> <span class="p">[</span> 
-         <span class="s2">&quot;mytests/curve_left.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;mytests/curve_right.jpg&quot;</span><span class="p">,</span><span class="s2">&quot;mytests/road_narrows.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;mytests/ice.jpg&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;mytests/bumpy.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;mytests/roadworks.jpg&quot;</span><span class="p">]</span>
+         <span class="s2">&quot;examples/curve_left.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/curve_right.jpg&quot;</span><span class="p">,</span><span class="s2">&quot;examples/road_narrows.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/ice.jpg&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;examples/bumpy.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/roadworks.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/wild.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/noveh.jpg&quot;</span><span class="p">,</span> 
+         <span class="s2">&quot;examples/bike.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/stop.jpg&quot;</span><span class="p">]</span>
 <span class="n">x_new_test_data_crop</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">im</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
@@ -12473,7 +12572,7 @@ Model saved
 
 <span class="n">X_new_tests_crop</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">X_new_tests_crop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_new_test_data_crop</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
-<span class="n">X_new_tests_labels_crop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+<span class="n">X_new_tests_labels_crop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
 
 <span class="n">X_new_tests_crop</span> <span class="o">=</span> <span class="n">X_new_tests_crop</span><span class="o">/</span><span class="mf">255.0</span> <span class="o">-</span> <span class="mf">0.5</span>
 <span class="n">image_shape</span> <span class="o">=</span> <span class="n">X_new_tests_crop</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
@@ -12495,14 +12594,18 @@ Model saved
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>mytests/curve_left.jpg
-mytests/curve_right.jpg
-mytests/road_narrows.jpg
-mytests/ice.jpg
-mytests/bumpy.jpg
-mytests/roadworks.jpg
+<pre>examples/curve_left.jpg
+examples/curve_right.jpg
+examples/road_narrows.jpg
+examples/ice.jpg
+examples/bumpy.jpg
+examples/roadworks.jpg
+examples/wild.jpg
+examples/noveh.jpg
+examples/bike.jpg
+examples/stop.jpg
 image shape is (32, 32, 3)
-length 6
+length 10
 </pre>
 </div>
 </div>
@@ -12521,7 +12624,7 @@ length 6
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Run the predictions here and use the model to output the prediction for each image.</span>
@@ -12555,9 +12658,9 @@ length 6
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>New cropped tests Accuracy = 0.833
-Tests Accuracy = 0.896
-Validation Accuracy = 0.894
+<pre>New cropped tests Accuracy = 0.900
+Tests Accuracy = 0.918
+Validation Accuracy = 0.917
 </pre>
 </div>
 </div>
@@ -12576,7 +12679,7 @@ Validation Accuracy = 0.894
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Calculate the accuracy for these 5 new images. </span>
@@ -12634,7 +12737,7 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Print out the top five softmax probabilities for the predictions on the German traffic sign images found on the web. </span>
@@ -12655,7 +12758,7 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
     <span class="nb">print</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;top 5 predictions are:&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
-    <span class="n">true_labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span> <span class="c1">## NoEntry,Pedestrians,turnRight,BumpyRoad,SL80 </span>
+    <span class="n">true_labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span> 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual Labels are:&quot;</span><span class="p">,</span><span class="n">true_labels</span><span class="p">)</span>
 </pre></div>
 
@@ -12674,21 +12777,29 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>softmax probabilties for top 5 predictions are:
-[[0.9979159 0.0014089 0.0006738 0.0000014 0.0000000]
- [0.9999901 0.0000093 0.0000006 0.0000000 0.0000000]
- [0.9987057 0.0012259 0.0000633 0.0000049 0.0000002]
- [0.9769765 0.0230236 0.0000000 0.0000000 0.0000000]
+[[1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [0.9990502 0.0009498 0.0000000 0.0000000 0.0000000]
+ [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [0.9999914 0.0000086 0.0000000 0.0000000 0.0000000]
+ [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
  [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
  [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]]
 
 top 5 predictions are:
-[[19 11 23 30 31]
- [20 28 11 30 23]
- [24 30 27 11 23]
- [11 30 23 28 27]
- [22 29 28 25 30]
- [25 29 14 22 24]]
-Actual Labels are: [19 20 24 23 22 25]
+[[19 23 11 21 30]
+ [20 23 30 24 28]
+ [24 29 25 30 23]
+ [30 11 23 24 28]
+ [22 29 31 25 24]
+ [25 29 31 24 21]
+ [31 21 23 30 25]
+ [15 13  9  3 12]
+ [29 24 23 30 25]
+ [14  5  3 20 28]]
+Actual Labels are: [19 20 24 23 22 25 31 15 29 14]
 </pre>
 </div>
 </div>
@@ -12739,7 +12850,7 @@ Actual Labels are: [19 20 24 23 22 25]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Visualize your network&#39;s feature maps here.</span>
