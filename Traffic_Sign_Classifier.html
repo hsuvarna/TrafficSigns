@@ -12249,7 +12249,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Define your architecture here.</span>
@@ -12268,11 +12268,12 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.contrib.layers</span> <span class="k">import</span> <span class="n">flatten</span>
 
+<span class="n">keep_prob</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">LeNet</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>    
     <span class="c1"># Arguments used for tf.truncated_normal, randomly defines variables for the weights and biases for each layer</span>
@@ -12284,22 +12285,22 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
     <span class="n">conv1_b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
     <span class="n">conv1</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">conv1_W</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">conv1_b</span>
 
-    <span class="c1"># TODO: Activation.</span>
-    <span class="n">conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv1</span><span class="p">)</span>
-
     <span class="c1"># TODO: Pooling. Input = 28x28x6. Output = 14x14x6.</span>
     <span class="n">conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">conv1</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
+    <span class="c1">#conv1 = tf.nn.dropout(conv1, 0.5)</span>
+    <span class="c1"># TODO: Activation.</span>
+    <span class="n">conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv1</span><span class="p">)</span>
     
     <span class="c1"># TODO: Layer 2: Convolutional. Output = 10x10x16.</span>
     <span class="n">conv2_W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">))</span>
     <span class="n">conv2_b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
     <span class="n">conv2</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">conv1</span><span class="p">,</span> <span class="n">conv2_W</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">conv2_b</span>
-   
-    <span class="c1"># TODO: Activation.</span>
-    <span class="n">conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2</span><span class="p">)</span>
     
     <span class="c1"># TODO: Pooling. Input = 10x10x16. Output = 5x5x16.</span>
     <span class="n">conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">conv2</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
+    <span class="c1">#conv2 = tf.nn.dropout(conv2, 0.5)</span>
+     <span class="c1"># TODO: Activation.</span>
+    <span class="n">conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2</span><span class="p">)</span>
 
     <span class="c1"># TODO: Flatten. Input = 5x5x16. Output = 400.</span>
     <span class="n">fc0</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">conv2</span><span class="p">)</span>
@@ -12333,7 +12334,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -12348,7 +12349,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">logits</span> <span class="o">=</span> <span class="n">LeNet</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -12365,7 +12366,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">correct_prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">one_hot_y</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -12398,7 +12399,7 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -12440,64 +12441,64 @@ BmnmQTZIM2Y3SDNmN0gzZjdIM2Y3SDNmN0gzZjdIM2Y3SP8PYPR8NW2mUMYAAAAASUVORK5CYII=
 <pre>Training...
 
 EPOCH 1 ...
-Validation Accuracy = 0.766
+Validation Accuracy = 0.762
 
 EPOCH 2 ...
-Validation Accuracy = 0.850
+Validation Accuracy = 0.853
 
 EPOCH 3 ...
-Validation Accuracy = 0.884
+Validation Accuracy = 0.864
 
 EPOCH 4 ...
-Validation Accuracy = 0.880
+Validation Accuracy = 0.892
 
 EPOCH 5 ...
-Validation Accuracy = 0.895
+Validation Accuracy = 0.906
 
 EPOCH 6 ...
-Validation Accuracy = 0.883
-
-EPOCH 7 ...
-Validation Accuracy = 0.888
-
-EPOCH 8 ...
-Validation Accuracy = 0.901
-
-EPOCH 9 ...
-Validation Accuracy = 0.902
-
-EPOCH 10 ...
-Validation Accuracy = 0.909
-
-EPOCH 11 ...
-Validation Accuracy = 0.898
-
-EPOCH 12 ...
-Validation Accuracy = 0.914
-
-EPOCH 13 ...
-Validation Accuracy = 0.908
-
-EPOCH 14 ...
 Validation Accuracy = 0.911
 
+EPOCH 7 ...
+Validation Accuracy = 0.921
+
+EPOCH 8 ...
+Validation Accuracy = 0.922
+
+EPOCH 9 ...
+Validation Accuracy = 0.918
+
+EPOCH 10 ...
+Validation Accuracy = 0.928
+
+EPOCH 11 ...
+Validation Accuracy = 0.929
+
+EPOCH 12 ...
+Validation Accuracy = 0.934
+
+EPOCH 13 ...
+Validation Accuracy = 0.938
+
+EPOCH 14 ...
+Validation Accuracy = 0.932
+
 EPOCH 15 ...
-Validation Accuracy = 0.898
+Validation Accuracy = 0.937
 
 EPOCH 16 ...
-Validation Accuracy = 0.913
+Validation Accuracy = 0.918
 
 EPOCH 17 ...
-Validation Accuracy = 0.920
+Validation Accuracy = 0.935
 
 EPOCH 18 ...
-Validation Accuracy = 0.895
+Validation Accuracy = 0.934
 
 EPOCH 19 ...
-Validation Accuracy = 0.903
+Validation Accuracy = 0.927
 
 EPOCH 20 ...
-Validation Accuracy = 0.917
+Validation Accuracy = 0.936
 
 Model saved
 </pre>
@@ -12510,7 +12511,7 @@ Model saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Train your model here.</span>
@@ -12546,7 +12547,7 @@ Model saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
@@ -12624,7 +12625,7 @@ length 10
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Run the predictions here and use the model to output the prediction for each image.</span>
@@ -12659,8 +12660,8 @@ length 10
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>New cropped tests Accuracy = 0.900
-Tests Accuracy = 0.918
-Validation Accuracy = 0.917
+Tests Accuracy = 0.922
+Validation Accuracy = 0.936
 </pre>
 </div>
 </div>
@@ -12679,7 +12680,7 @@ Validation Accuracy = 0.917
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Calculate the accuracy for these 5 new images. </span>
@@ -12737,7 +12738,7 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Print out the top five softmax probabilities for the predictions on the German traffic sign images found on the web. </span>
@@ -12777,28 +12778,28 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>softmax probabilties for top 5 predictions are:
-[[1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
- [0.9990502 0.0009498 0.0000000 0.0000000 0.0000000]
+[[0.9984503 0.0015497 0.0000000 0.0000000 0.0000000]
  [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
- [0.9999914 0.0000086 0.0000000 0.0000000 0.0000000]
- [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
- [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [0.9991807 0.0008193 0.0000000 0.0000000 0.0000000]
+ [0.9683495 0.0316506 0.0000000 0.0000000 0.0000000]
  [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
  [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [0.9999999 0.0000001 0.0000000 0.0000000 0.0000000]
  [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]
+ [0.5063283 0.4933169 0.0003206 0.0000341 0.0000000]
  [1.0000000 0.0000000 0.0000000 0.0000000 0.0000000]]
 
 top 5 predictions are:
-[[19 23 11 21 30]
- [20 23 30 24 28]
- [24 29 25 30 23]
- [30 11 23 24 28]
- [22 29 31 25 24]
- [25 29 31 24 21]
- [31 21 23 30 25]
- [15 13  9  3 12]
- [29 24 23 30 25]
- [14  5  3 20 28]]
+[[19 25 21 23 30]
+ [20 23 41 25 30]
+ [24 25 30 29 26]
+ [30 11 24 25 29]
+ [22 26 29 30 25]
+ [25 29 24 30 22]
+ [31 25 21 30 23]
+ [15  9 13  3  2]
+ [29 30 24 25 22]
+ [14 13 26 17 29]]
 Actual Labels are: [19 20 24 23 22 25 31 15 29 14]
 </pre>
 </div>
@@ -12850,7 +12851,7 @@ Actual Labels are: [19 20 24 23 22 25 31 15 29 14]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Visualize your network&#39;s feature maps here.</span>
