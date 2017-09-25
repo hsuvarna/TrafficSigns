@@ -106,7 +106,7 @@ My final model consisted of the following layers:
 To train the model, I used an the above LENET neural net of 5 levels. The batch size was 100, epochs 20 and learning rate of 0.001. All the labels were one hot encoded. The convergence to minimum error was attained using the AdamOptimizer function. I n the class we only learned about Gradientdescent optimizer. The optimizer per stack echange link https://stats.stackexchange.com/questions/184448/difference-between-gradientdescentoptimizer-and-adamoptimizer-tensorflow is faster at the expense of more computation and memory.
 
 After the preprocessing gave me fits of accuracies around < 10%, I fixed the preprocessing to normalization to [-0.5, 0.5] for all channels of the image. This immediately bumped up my accuracies into high 70s. Then I played with the epochs, learning rate and batch size.
-| Epochs         		|    Batch size	        					| Learning rate      | Accuracies
+| Epochs         		|    Batch size	        					| Learning rate      | Accuracies |
 |:---------------------:|:---------------------------------------------:| 
 | 50         		| 100   							| 0.0001     | Validation = 0.84, Test=0.25 |
 | 50         		| 100   							| 0.01     | Validation = 0.9, Test=0.88 |
