@@ -104,22 +104,25 @@ After the preprocessing gave me fits of accuracies around < 10%, I fixed the pre
 | 10         		| 150   							| 0.0001     | Validation = 0.74, Test=0.73 |
 | 10         		| 100   							| 0.01     | Validation = 0.90, Test=0.89 |
 | 10         		| 100   							| 0.01     | Validation = 0.902, Test=0.889 |
-| 20         		| 100   							| 0.001     | Validation = 0.92, Test=0.92 |
+| 20         		| 100   							| 0.001     | Validation = 0.936, Test=0.922 |
 
 
 I settled for the last row. 
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
 
-I just experimented with various epochs, learning rates and batch sizes. 
+I just experimented with various epochs, learning rates and batch sizes. This combination is working to give validation accuracy > 0.93. 
+
+I also tried dropouts on conv1 and conv2 (1st 2 layers) with probability 0.5. But that worsened the accuracies to 0.6-0.8. I abandoned the dropout experiment.
+
 The current neural net model seems like working good. Basically the input problem we have is characterized by pretty naroow set of image content. i.e. all the german traffic signs are about traingles (blue and red), circles (blue and red), arrows and curves. The neural net convolutions in the 1st two layers are enough to learn about these basic shapes. This problem is slightle extended version of the mnist digits where in only 10 digits are there and all are pretty well defined through curves.
 However, this may not be enough for objects recognistion, patterns.
 
 
 My final model results were:
-* training set accuracy of 0.917
-* validation set accuracy of 0.918
-* test set accuracy of ? 0.90
+* training set accuracy of 0.936
+* validation set accuracy of 0.936
+* test set accuracy of ? 0.922
 
 If an iterative approach was chosen:
 No. I started with LENET and it worked ok.
@@ -192,30 +195,29 @@ length 10
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 1.0         			| curve_left 									| 
+| 0.9984503          			| curve_left 									| 
 
 
 For the second image ...
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.999         			| curve_right 									|
-| 0.000949         			| slippery									|
+|1.000        			| curve_right 									|
 
 
 For the third image ... 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 1.000         			| curve_right 									| 
-| 0.0         			| slippery									| 
+| 0.9991807         			| curve_right 									| 
+| 0.0008193        			| slippery									| 
 
 For the fourth image ... 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 1.000         			| children crossing (wrong)									| 
-| 0.0         			| slippery									| 
+| 0.9683495         			| children crossing (wrong)									| 
+| 0.0316506       			| slippery									| 
 
 For the fifth image ... 
 
