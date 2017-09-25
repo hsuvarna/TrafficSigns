@@ -25,9 +25,6 @@ The goals / steps of this project are the following:
 [image8]: ./examples/roadnarrows.png "Traffic Sign 5"
 
 
-## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
-
 ---
 ###Writeup / README
 
@@ -37,8 +34,6 @@ You're reading it! and here is a link to my [project code](https://github.com/hs
 
 
 ###Data Set Summary & Exploration
-
-####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
 I used the standard python length utlities provided on top of np arrays to calculate summary statistics of the traffic
 signs data set:
@@ -50,10 +45,6 @@ signs data set:
 * The number of unique classes/labels in the data set is : 43
 
 ####2. Include an exploratory visualization of the dataset.
-
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
-
-![alt text][image1]
 
 The things about the data visualization that stuck my mind are 
 * how many different shapes are there in the problem
@@ -69,14 +60,10 @@ More about the content so that convolution windows can be guessed. But ran out o
 
 ###Design and Test a Model Architecture
 
-####1. Describe how you preprocessed the image data. 
-
 I have tried the following first to process images
 1. Tried converting the images to grayscale and used the normalization technique to clamp values between 0 and 1. My training accuracy was abysmal of <10%. This could be because of bugs in my normalization code.
 2. I also tried RGB normalization by computing (R/R+G+B)\*255 method. It was very slow as I was operating at pixel level.
 3. Then I tried the simple linear alzebra way of dividing by 255 and subtracting 0.5 to clamp values [-0.5 to 0.5]. This was fast and worked.
-
-
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -106,11 +93,12 @@ My final model consisted of the following layers:
 To train the model, I used an the above LENET neural net of 5 levels. The batch size was 100, epochs 20 and learning rate of 0.001. All the labels were one hot encoded. The convergence to minimum error was attained using the AdamOptimizer function. I n the class we only learned about Gradientdescent optimizer. The optimizer per stack echange link https://stats.stackexchange.com/questions/184448/difference-between-gradientdescentoptimizer-and-adamoptimizer-tensorflow is faster at the expense of more computation and memory.
 
 After the preprocessing gave me fits of accuracies around < 10%, I fixed the preprocessing to normalization to [-0.5, 0.5] for all channels of the image. This immediately bumped up my accuracies into high 70s. Then I played with the epochs, learning rate and batch size.
-| Epochs         		|    Batch size	        					| Learning rate      | Accuracies |
+
+| Epochs         		|    Batch size	        					| Learning rate      | Accuracies 
 |:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------:|
 | 50         		| 100   							| 0.0001     | Validation = 0.84, Test=0.25 |
-| 50         		| 100   							| 0.01     | Validation = 0.9, Test=0.88 |
-| 10         		| 50  							| 0.00001     | Validation = 0.11, Test=0.0.07 |
+| 50         		| 100   							| 0.01       | Validation = 0.9, Test=0.88 |
+| 10         		| 50  							  | 0.00001     | Validation = 0.11, Test=0.0.07 |
 | 10         		| 150   							| 0.0001     | Validation = 0.74, Test=0.73 |
 | 10         		| 100   							| 0.01     | Validation = 0.90, Test=0.889 |
 | 10         		| 150   							| 0.0001     | Validation = 0.74, Test=0.73 |
@@ -122,6 +110,7 @@ After the preprocessing gave me fits of accuracies around < 10%, I fixed the pre
 I settled for the last row. 
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
+
 I just experimented with various epochs, learning rates and batch sizes. 
 The current neural net model seems like working good. Basically the input problem we have is characterized by pretty naroow set of image content. i.e. all the german traffic signs are about traingles (blue and red), circles (blue and red), arrows and curves. The neural net convolutions in the 1st two layers are enough to learn about these basic shapes. This problem is slightle extended version of the mnist digits where in only 10 digits are there and all are pretty well defined through curves.
 However, this may not be enough for objects recognistion, patterns.
@@ -167,7 +156,7 @@ The curve left and double curve left also are similar images with slight shapes.
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:|:---------------------:|
+|:---------------------:|:---------------------------------------------:|
 | Stop Sign      		| Stop sign   									| 
 | wild animal sign     			| wild animals sign 										|
 | slippery road					| double curve										|
@@ -203,27 +192,33 @@ length 10
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 1.0         			| curve_left 									|   |
+| 1.0         			| curve_left 									| 
 
-For the second image ... 
+
+For the second image ...
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.999         			| curve_right 									|    |
-| 0.000949         			| slippery									|    |
+| 0.999         			| curve_right 									|
+| 0.000949         			| slippery									|
+
 
 For the third image ... 
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.000         			| curve_right 									| 
 | 0.0         			| slippery									| 
 
 For the fourth image ... 
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.000         			| children crossing (wrong)									| 
 | 0.0         			| slippery									| 
 
 For the fifth image ... 
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.000         			| bumpy									| 
