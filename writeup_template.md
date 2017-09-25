@@ -67,7 +67,6 @@ The things about the data visualization that stuck my mind are
 More about the content so that convolution windows can be guessed. But ran out of time/coding knowledge to depict.
 
 
-
 ###Design and Test a Model Architecture
 
 ####1. Describe how you preprocessed the image data. 
@@ -85,7 +84,7 @@ My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| Normalized to [-0.5 , 0.5]
+| Input         		| 32x32x3 RGB image   							| Normalized to [-0.5 , 0.5]|
 | Convolution 5x5x3x6     	| outputs 28x28x6 	|
 | RELU					|												|
 | Max pooling	      	| 2x2 stride,  outputs 14x14x6				|
@@ -104,7 +103,7 @@ My final model consisted of the following layers:
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an the above LENET neural net of 5 levels. The batch size was 100, epochs 10 and learning rate of 0.001. All the labels were one hot encoded. The convergence to minimum error was attained using the AdamOptimizer function. I n the class we only learned about Gradientdescent optimizer. The optimizer per stack echange link https://stats.stackexchange.com/questions/184448/difference-between-gradientdescentoptimizer-and-adamoptimizer-tensorflow is faster at the expense of more computation and memory.
+To train the model, I used an the above LENET neural net of 5 levels. The batch size was 100, epochs 20 and learning rate of 0.001. All the labels were one hot encoded. The convergence to minimum error was attained using the AdamOptimizer function. I n the class we only learned about Gradientdescent optimizer. The optimizer per stack echange link https://stats.stackexchange.com/questions/184448/difference-between-gradientdescentoptimizer-and-adamoptimizer-tensorflow is faster at the expense of more computation and memory.
 
 After the preprocessing gave me fits of accuracies around < 10%, I fixed the preprocessing to normalization to [-0.5, 0.5] for all channels of the image. This immediately bumped up my accuracies into high 70s. Then I played with the epochs, learning rate and batch size.
 | Epochs         		|    Btach size	        					| Learning rate      | Accuracies
@@ -117,10 +116,10 @@ After the preprocessing gave me fits of accuracies around < 10%, I fixed the pre
 | 10         		| 150   							| 0.0001     | Validation = 0.74, Test=0.73
 | 10         		| 100   							| 0.01     | Validation = 0.90, Test=0.89
 | 10         		| 100   							| 0.01     | Validation = 0.902, Test=0.889
-| 20         		| 100   							| 0.01     | Validation = 0.93, Test=0.91
+| 20         		| 100   							| 0.001     | Validation = 0.92, Test=0.92
 
 
-I settled for the last row.
+I settled for the last row. 
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
 I just experimented with various epochs, learning rates and batch sizes. 
@@ -157,7 +156,11 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
+The slippery road image ![alt text][image7] might be difficult to classify because it has a tree kind of shape which is similar to another road sign of trees. 
+
+The bumpy sign image ![alt text][image4] is also hard as it has a red traiangle and two curves inside it similar to some other traffic signs like roadworks.
+
+The curve left and double curve left also are similar images with slight shapes.
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -200,13 +203,13 @@ length 10
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 1.0         			| curve_left 									| 
+| 1.0         			| curve_left 									|   |
 
 For the second image ... 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.999         			| curve_right 									| 
-| 0.000949         			| slippery									| 
+| 0.999         			| curve_right 									|    |
+| 0.000949         			| slippery									|    |
 
 For the third image ... 
 | Probability         	|     Prediction	        					| 
