@@ -107,7 +107,7 @@ To train the model, I used an the above LENET neural net of 5 levels. The batch 
 
 After the preprocessing gave me fits of accuracies around < 10%, I fixed the preprocessing to normalization to [-0.5, 0.5] for all channels of the image. This immediately bumped up my accuracies into high 70s. Then I played with the epochs, learning rate and batch size.
 | Epochs         		|    Batch size	        					| Learning rate      | Accuracies |
-|:---------------------:|:---------------------------------------------:| 
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------:|
 | 50         		| 100   							| 0.0001     | Validation = 0.84, Test=0.25 |
 | 50         		| 100   							| 0.01     | Validation = 0.9, Test=0.88 |
 | 10         		| 50  							| 0.00001     | Validation = 0.11, Test=0.0.07 |
@@ -167,7 +167,7 @@ The curve left and double curve left also are similar images with slight shapes.
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
+|:---------------------:|:---------------------------------------------:|:---------------------:|
 | Stop Sign      		| Stop sign   									| 
 | wild animal sign     			| wild animals sign 										|
 | slippery road					| double curve										|
